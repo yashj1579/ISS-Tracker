@@ -178,11 +178,9 @@ This README was generated with the assistance of AI (Chat-GPT) to streamline con
    - Official NASA site for ISS trajectory data. This dataset provides the ISS state vectors, including epochs, positions, and velocities over a 15-day period.
 2. [Python datetime Documentation](https://en.wikipedia.org/wiki/Great-circle_distance](https://docs.python.org/3/library/datetime.html )
    - Reference for Python's datetime module, useful for working with epoch timestamps.
-4. [Datetime Formatting StackOverflow](https://salesforce.stackexchange.com/questions/58437/how-to-convert-string-into-datetime-format)
+3. [Datetime Formatting StackOverflow](https://salesforce.stackexchange.com/questions/58437/how-to-convert-string-into-datetime-format)
    - Reference for Python's datetime module, useful for working with epoch timestamps.
-5. [Reading/Writing XML Files in Python](https://www.geeksforgeeks.org/reading-and-writing-xml-files-in-python/)
+4. [Reading/Writing XML Files in Python](https://www.geeksforgeeks.org/reading-and-writing-xml-files-in-python/)
    - A useful guide on handling XML data in Python.
-6. [Werkzeug Exceptions](https://www.geeksforgeeks.org/reading-and-writing-xml-files-in-python/](https://werkzeug.palletsprojects.com/en/stable/exceptions/)
-   - Reference for handling exceptions in Flask using the Werkzeug library.
-7. [GeoPy Resource](https://geopy.readthedocs.io/en/stable/#module-geopy.geocoders)
+5. [GeoPy Resource](https://geopy.readthedocs.io/en/stable/#module-geopy.geocoders)
    - Reference for using GeoPy in order to get the location of our epoch. 
