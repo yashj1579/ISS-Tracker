@@ -170,8 +170,11 @@ The `iss_tracker.py` file processes input data provided through a function desig
 
 ## AI and Resources
 
-This README was generated with the assistance of AI (Chat-GPT) to streamline content formatting and improve clarity. The AI helped in structuring the document efficiently while ensuring that all critical details were covered. The code was almost entirely written by me. I was slightly confused on how to get information from redis in the specific format I required (converting a string to dict). GPT helped construct a solution for this seen in the line:
-```return [{"epoch": epoch.split('.')[0], **eval(data)} for epoch, data in redis_client.hgetall("iss_data").items()]```
+This README was generated with the assistance of AI (ChatGPT) to streamline content formatting and improve clarity. The AI helped structure the document efficiently while ensuring all critical details were included. The code was primarily written by me, with one instance where I needed assistance in retrieving data from Redis in the specific format I required (converting a string to a dictionary). GPT assisted in constructing a solution, which can be seen in the following line:
+
+```python
+return [{"epoch": epoch.split('.')[0], **eval(data)} for epoch, data in redis_client.hgetall("iss_data").items()]
+```
 
 ## References:
 1. [ISS Trajectory Data](https://spotthestation.nasa.gov/trajectory_data.cfm)
