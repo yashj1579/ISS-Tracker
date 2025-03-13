@@ -2,3 +2,5 @@ Flask
 requests
 redis
 pytest
+astropy
+geopy
