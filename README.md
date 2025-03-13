@@ -16,6 +16,8 @@ This project utilized the following dependencies:
 - Redis
 - Astropy
 - Geopy
+
+
 You can find the exact list of dependencies in the `requirements.txt` file.
 
 ## File Descriptions
