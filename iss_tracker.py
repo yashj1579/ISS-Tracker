@@ -9,6 +9,11 @@ from typing import List, Dict
 from flask import Flask, request
 from werkzeug.exceptions import BadRequest
 import redis
+import time
+from astropy import coordinates
+from astropy import units
+from astropy.time import Time
+from geopy.geocoders import Nominatim
 
 
 app = Flask(__name__)
@@ -202,6 +207,30 @@ def get_specific_speed(epoch: str) -> list:
     """
     epoch_vector = get_specific_epoch(epoch)
     return [speed(float(epoch_vector["x_dot"]), float(epoch_vector["y_dot"]), float(epoch_vector["z_dot"]))]
+
+
+@app.route('/epochs/<epoch>/location', methods = ['GET'])
+def compute_location_astropy(epoch: str) -> dict:
+    """
+    Used the provided code from Dr Allen
+    Determine the location of the object in the current epoch
+    :param epoch: dateTime of epoch that the user wants information about
+    :return: latitude, longitude, and height of the object in the current epoch as well as geoposition
+    """
+    sv = get_specific_epoch(epoch)
+    x = float(sv['x'])
+    y = float(sv['y'])
+    z = float(sv['z'])
+
+    this_epoch=time.strftime('%Y-%m-%d %H:%m:%S', time.strptime(epoch, '%Y-%jT%H:%M:%S.%fZ'))
+    cartrep = coordinates.CartesianRepresentation([x, y, z], unit=units.km)
+    gcrs = coordinates.GCRS(cartrep, obstime=this_epoch)
+    itrs = gcrs.transform_to(coordinates.ITRS(obstime=this_epoch))
+    loc = coordinates.EarthLocation(*itrs.cartesian.xyz)
+    geocoder = Nominatim(user_agent='iss_tracker')
+    geoloc = geocoder.reverse((loc.lat.value, loc.lon.value), zoom=15, language='en')
+
+    return {"lat": loc.lat.value, "lon": loc.lon.value, "height": loc.height.value, "location" : str(geoloc)}
 
 @app.route('/now', methods = ['GET'])
 def get_now_epoch() -> dict:
