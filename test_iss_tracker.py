@@ -80,3 +80,17 @@ def test_get_specific_speed():
     response = requests.get(f"http://127.0.0.1:5000/epochs/{str(a_representative_epoch.strftime(format))}/speed")
     assert response.status_code == 200
     assert isinstance(response.json()[0], float)
+
+def test_compute_location_astropy():
+    response1 = requests.get("http://127.0.0.1:5000/epochs")
+    a_representative_epoch = response1.json()
+    a_representative_epoch = a_representative_epoch[0]["epoch"]
+    format = "%Y-%m-%d %H:%M:%S"
+    a_representative_epoch = datetime.strptime(a_representative_epoch, format)
+    format = "%Y-%jT%H:%M:%S.%fZ"
+    response = requests.get(f"http://127.0.0.1:5000/epochs/{str(a_representative_epoch.strftime(format))}/location")
+    assert response.status_code == 200
+    height, lat, geoloc, lon = response.json().values()
+    assert isinstance(lat, float)
+    assert isinstance(lon, float)
+    assert isinstance(height, float)
