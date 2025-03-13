@@ -3,12 +3,12 @@ from datetime import datetime, timedelta
 from iss_tracker import speed, process_data, closest_epoch, epoch_range, avg_speed, get_epochs, get_specific_epoch, get_specific_speed, get_now_epoch, compute_location_astropy, get_iss_data
 import requests
 import redis
-
+ 
 def test_speed():
     assert speed(3, 4, 0) == 5.0
     assert speed(0, 0, 0) == 0.0
     assert abs(speed(1, 2, 2) - 3.0) <= 1e-3
-
+ 
 def test_epoch_range():
     first, last, diff = epoch_range()
     assert isinstance(first, datetime)
@@ -26,7 +26,7 @@ def test_closest_epoch():
     assert isinstance(closest, dict)
     assert "epoch" in closest
 
-def test_get_iss_data():
+def test_get_iss_data():  
     dataset = get_iss_data()
     assert isinstance(dataset, list)
 
@@ -50,7 +50,7 @@ def test_get_epochs():
     assert isinstance(response.json(), list)
 
 
-def test_get_specific_epoch():
+def test_get_specific_epoch():   
     response1 = requests.get("http://127.0.0.1:5000/epochs")
     a_representative_epoch = response1.json()
     a_representative_epoch = a_representative_epoch[0]["epoch"]
@@ -70,7 +70,7 @@ def test_get_now_epoch():
     assert isinstance(response.json(), dict)
     assert len(response.json()) == 2
 
-def test_get_specific_speed():
+def test_get_specific_speed(): 
     response1 = requests.get("http://127.0.0.1:5000/epochs")
     a_representative_epoch = response1.json()
     a_representative_epoch = a_representative_epoch[0]["epoch"]
@@ -80,7 +80,7 @@ def test_get_specific_speed():
     response = requests.get(f"http://127.0.0.1:5000/epochs/{str(a_representative_epoch.strftime(format))}/speed")
     assert response.status_code == 200
     assert isinstance(response.json()[0], float)
-
+ 
 def test_compute_location_astropy():
     response1 = requests.get("http://127.0.0.1:5000/epochs")
     a_representative_epoch = response1.json()
