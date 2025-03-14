@@ -222,7 +222,7 @@ def compute_location_astropy(epoch: str) -> dict:
     y = float(sv['y'])
     z = float(sv['z'])
 
-    this_epoch=time.strftime('%Y-%m-%d %H:%m:%S', time.strptime(epoch, '%Y-%jT%H:%M:%S.%fZ'))
+    this_epoch=time.strftime('%Y-%m-%d %H:%M:%S', time.strptime(epoch, '%Y-%jT%H:%M:%S.%fZ'))
     cartrep = coordinates.CartesianRepresentation([x, y, z], unit=units.km)
     gcrs = coordinates.GCRS(cartrep, obstime=this_epoch)
     itrs = gcrs.transform_to(coordinates.ITRS(obstime=this_epoch))
