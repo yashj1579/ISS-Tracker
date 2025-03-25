@@ -135,11 +135,11 @@ curl "localhost:5000/epochs?limit=2&offset=5"
 ```
 Test retrieving specific epoch data:
 ```bash
-curl "http://127.0.0.1:5000/epochs/2025-076T12:40:00.000000Z"
+curl "http://127.0.0.1:5000/epochs/2025-083T12:52:00.000000Z"
 ```
 Test retrieving speed for a specific epoch:
 ```bash
-curl "http://127.0.0.1:5000/epochs/2025-076T12:40:00.000000Z/speed"
+curl "http://127.0.0.1:5000/epochs/2025-083T12:52:00.000000Z/speed"
 ```
 Test retrieving the closest epoch:
 ```bash
@@ -147,7 +147,7 @@ curl http://127.0.0.1:5000/now
 ```
 Test retrieving geolocation data for a specific epoch:
 ```bash
-curl "http://127.0.0.1:5000/epochs/2025-076T12:40:00.000000Z/location"
+curl "http://127.0.0.1:5000/epochs/2025-083T12:52:00.000000Z/location"
 ```
 ### 5. Run Unit Tests
 To run the unit tests, open the Docker container and run pytest:
