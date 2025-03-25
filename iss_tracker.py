@@ -191,7 +191,7 @@ def get_specific_epoch(epoch: str) -> dict:
     :param epoch: dateTime of epoch that the user wants information about in format ex. 2025-061T20:10:30.000000Z
     :return: state information for a specific Epoch from the data set
     """
-    converted_epoch = str(datetime.strptime(epoch, "%Y-%jT%H:%M:%S.%fZ").strftime("%Y-%m-%d %H:%M:%S"))
+    converted_epoch = epoch.split('.')[0]
     data = redis_client.hget("iss_data", converted_epoch)
     if not data:
         logging.error("Failed to find that epoch value in our dataset")
